@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Image Placer</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h1>🖼️ Place Images around your screen!</h1>
+    <p>Just paste the image url and enjoy <br><br>press the ~ key on your keyboard to close the current image</p>
+    <input type="url" placeholder="https://imagewebsite.com/image.gif" id="imageURL"></input>
+    <button id="hitButton">✨DISPLAY✨</button>
+    <script>
+
+      function isImageValid(str) {
+        try {
+          const newUrl = new URL(str);
+          return newUrl.protocol === 'http:' || newUrl.protocol === 'https:';
+        } catch (err) {
+          return false;
+        }
+      }
+      
+      window.resizeTo(400, 400);
+
+      const button = document.getElementById("hitButton");
+      const imageURL = document.getElementById("imageURL");
+
+      button.onclick = () => {
+        if (isImageValid(imageURL.value)) {
+          const imageOBJ = document.createElement("img")
+          imageOBJ.src = imageURL.value;
+          imageOBJ.onload = () => {
+            window.resizeTo(Math.min(imageOBJ.width, window.upperScreenWidth), Math.min(imageOBJ.height, window.upperScreenHeight));
+            document.body.appendChild(imageOBJ);
+            document.title = imageURL.value;
+
+            let myCoolEvent = null
+
+            myCoolEvent = addEventListener("keypress", (event) => {
+              console.log(event.key)
+              if( event.key == "`" ) {
+                removeEventListener("keypress", myCoolEvent);
+                document.body.removeChild(imageOBJ);
+                window.resizeTo(400, 400);
+              }
+            });
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
