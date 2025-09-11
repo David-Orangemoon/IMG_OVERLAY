@@ -1,10 +1,10 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif;
-  margin: auto;
-  max-width: 38rem;
-  padding: 2rem;
-  background-color: var(--Background);
+  padding: 0px;
+  margin: 0px;
+
+  background-color: transparent;
   color: var(--TextColor);
   overflow: hidden;
 
@@ -23,6 +23,9 @@ body {
   --textBox3: #191922;
 
   transition: all 500ms;
+
+  display: grid;
+  grid-template-rows: 32px auto;
 }
 
 img {
@@ -93,7 +96,7 @@ button {
   margin-right: 20%;
   margin-bottom: 5%;
   width: 60%;
-  height: 20%;
+  height: 10%;
   font-size: larger;
 
   color: var(--TextColor);
@@ -103,24 +106,43 @@ button {
 }
 
 button:hover {
-  border-radius: 15px;
   background-color: var(--button2);
-  border: none;
   cursor: pointer;
-  z-index: 100;
-
-  position: relative;
-
-  margin-left: 20%;
-  margin-top: 5%;
-  margin-right: 20%;
-  margin-bottom: 5%;
-  width: 60%;
-  height: 20%;
-  font-size: larger;
 
   color: var(--TextColor);
-  font-family: 'Lexend', sans-serif;
 
   transition: all 250ms;
+}
+
+.topBar {
+  width: 100%;
+  background-color: var(--button1);
+  padding: 0px;
+  margin: 0px;
+  app-region: drag;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.mainWindow {
+  display: inline;
+
+  width: 100%;
+  height: 100%;
+
+  margin: auto;
+
+  background-color: var(--Background);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.buttonTop {
+  padding: 0px; 
+  margin: 0px; 
+  height: 100%; 
+  background-color: transparent; 
+  width: auto; 
+  aspect-ratio: 1;
+  app-region: no-drag;
 }

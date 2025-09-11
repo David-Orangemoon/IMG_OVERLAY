@@ -6,64 +6,18 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <h1>🖼️ Place Images around your screen!</h1>
-    <p>Just paste the image url and enjoy <br><br>press the ~ key on your keyboard to close the current image</p>
-    <input type="url" placeholder="https://imagewebsite.com/image.gif" id="imageURL"></input>
-    <button id="hitButton">✨DISPLAY✨</button>
-    <script>
-
-      function isImageValid(str) {
-        try {
-          const newUrl = new URL(str);
-          return newUrl.protocol === 'http:' || newUrl.protocol === 'https:';
-        } catch (err) {
-          return false;
-        }
-      }
-      
-      window.resizeTo(400, 400);
-
-      const button = document.getElementById("hitButton");
-      const imageURL = document.getElementById("imageURL");
-
-      button.onclick = () => {
-        if (isImageValid(imageURL.value)) {
-          const imageOBJ = document.createElement("img")
-          imageOBJ.src = imageURL.value;
-          imageOBJ.onload = () => {
-            document.body.style.setProperty("--Background", "#00000000");
-            document.body.style.setProperty("--TextColor", "#00000000");
-            document.body.style.setProperty("--TextColorINV", "#00000000");
-            document.body.style.setProperty("--button1", "#00000000");
-            document.body.style.setProperty("--button2", "#00000000");
-            document.body.style.setProperty("--textBox1", "#00000000");
-            document.body.style.setProperty("--textBox2", "#00000000");
-            document.body.style.setProperty("--textBox3", "#00000000");
-            window.resizeTo(Math.min(imageOBJ.width, window.upperScreenWidth), Math.min(imageOBJ.height, window.upperScreenHeight));
-            document.body.appendChild(imageOBJ);
-            document.title = imageURL.value;
-
-            let myCoolEvent = null
-
-            myCoolEvent = addEventListener("keypress", (event) => {
-              console.log(event.key)
-              if( event.key == "`" ) {
-                removeEventListener("keypress", myCoolEvent);
-                document.body.removeChild(imageOBJ);
-                window.resizeTo(400, 400);
-                document.body.style.setProperty("--Background", "#020209");
-                document.body.style.setProperty("--TextColor", "rgb(213, 213, 224");
-                document.body.style.setProperty("--TextColorINV", "rgb(100,100,120)");
-                document.body.style.setProperty("--button1", "rgb(119, 14, 119)");
-                document.body.style.setProperty("--button2", "rgb(161, 13, 161)");
-                document.body.style.setProperty("--textBox1", "#1a1a27");
-                document.body.style.setProperty("--textBox2", "#2e1c14");
-                document.body.style.setProperty("--textBox3", "#191922");
-              }
-            });
-          }
-        }
-      }
-    </script>
+    <div class="topBar">
+      <button class="buttonTop" onclick="window.close()">X</button>
+    </div>
+    <div class="mainWindow">
+      <h1 style="text-align: center; font-size: x-large;">🖼️ Place Images around your screen!</h1>
+      <p style="margin-left: 16px;">Just paste the image url and enjoy <br><br>press the ~ key on your keyboard to close the current image</p>
+      <div style="position: relative; margin-left: 10%;display: grid; grid-template-columns: 50% 50%;">
+        <input style="margin: 0px; height: 100%;" type="url" placeholder="https://imagewebsite.com/image.gif" id="imageURL"></input>
+        <button style="margin: 0px; height: 100%;" id="fileButton">Load File</button>
+      </div>
+      <button id="hitButton">✨DISPLAY✨</button>
+    </div>
+    <script src="src/main.js"></script>
   </body>
 </html>
