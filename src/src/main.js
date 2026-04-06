@@ -55,7 +55,7 @@ function loadImage(url) {
 
 button.onclick = () => {
   if (isImageValid(imageURL.value)) {
-    loadImage();
+    loadImage(imageURL.value);
   }
 };
 
